@@ -1,12 +1,16 @@
 # mk-toolkit
 
-我个人的 Agent Skill 仓库，同时也是一个 **Claude Code 插件 marketplace**。
+我个人的 **Agent Skill 集合**，同时也是一个 **Claude Code 插件 marketplace**。
 
-仓库里的 skill 遵循 [agentskills.io](https://agentskills.io/specification) 规范，任何支持该规范的 AI 编程工具（Claude Code、Codex CLI 等）都能安装使用。
+这是一个会持续扩充的 skill 工具箱，**不局限于某一领域**——研发、写作、运维、信息检索、日常自动化等任何能沉淀为 skill 的能力，未来都会陆续收录进来。所有 skill 遵循 [agentskills.io](https://agentskills.io/specification) 规范，任何支持该规范的 AI 编程工具（Claude Code、Codex CLI 等）都能安装使用。
 
 ## Skills
 
-所有 skill 打包为 `mk-toolkit` 插件（一个会持续扩充的个人 skill 集合，不限于研发领域）。当前收录的两个 skill 强制执行结构化的研发流程：先写文档，再写代码。
+所有 skill 打包为 `mk-toolkit` 插件。下面是当前已收录的 skill（列表会随时间增长）。
+
+### 研发流程
+
+强制执行结构化的研发流程：先写文档，再写代码。
 
 ### `/dev-workflow`
 
