@@ -2,11 +2,12 @@
 
 本项目（`mk-toolkit`）的开发与发布规范。**任何对 skill 的开发迭代都必须遵守。** 面向人类维护者和 AI Agent 共同执行。
 
-## 三条硬性规则
+## 四条硬性规则
 
 1. **环境隔离**：任何 skill 的开发/迭代都在独立的 **git worktree + 分支** 里进行，绝不直接改 `main`。
-2. **版本维护**：每次改动 skill 都要 bump 该 skill 自己的版本，并写 CHANGELOG。
-3. **发布打 tag 前确认**：每次项目发布，先问「是否要打 tag」，**得到确认后**才创建项目级 git tag。
+2. **PR 评审合并**：**所有**改动（含文档、配置）一律通过 新建分支 → 推送 → 提 PR（MR） 进入主干，由 **reviewer 手动评审并合并**。禁止直接 push `main`，禁止自动合并 / 自己合自己的 PR。
+3. **版本维护**：每次改动 skill 都要 bump 该 skill 自己的版本，并写 CHANGELOG。
+4. **发布打 tag 前确认**：每次项目发布，先问「是否要打 tag」，**得到确认后**才创建项目级 git tag。
 
 ---
 
@@ -41,7 +42,8 @@ skill 版本**独立演进**；项目版本在**发布时聚合**这段时间内
 2. **改动**：在 worktree 里修改 `<skill>/SKILL.md` 及其引用文件。
 3. **bump 版本**：按上面的 SemVer 规则改 `SKILL.md` frontmatter 的 `version`。
 4. **写 CHANGELOG**：在 `<skill>/CHANGELOG.md` 顶部加一条新版本记录（含日期与 Added/Changed/Fixed）。
-5. **提交、合并、清理**：提交后合回 `main`（PR 或直接合），然后删掉 worktree 与分支。
+5. **提 PR**：在分支上提交并推送，开 PR（MR）。**不要自己合并** —— 由 reviewer 手动评审后合并到 `main`。
+6. **清理**：PR 合并后，删掉 worktree 与本地分支。
    ```bash
    git worktree remove ../mk-toolkit-<skill>-<简述>
    ```
@@ -58,20 +60,21 @@ skill 版本**独立演进**；项目版本在**发布时聚合**这段时间内
 2. **更新两处**：
    - `.claude-plugin/marketplace.json` 的 `plugins[0].version`；
    - 根 `CHANGELOG.md` 加一条发布记录，列出本次涉及的各 skill 及其新版本。
-3. **提交**：`chore(release): vX.Y.Z`。
-4. **确认是否打 tag**（硬性规则 3）：明确询问维护者「本次发布是否创建 tag `vX.Y.Z`？」
-   - **确认后**才执行：
+3. **提 PR**：在发布分支提交（`chore(release): vX.Y.Z`）并提 PR，由 reviewer 评审合并到 `main`。
+4. **确认是否打 tag**（硬性规则 4）：PR 合并后，明确询问维护者「本次发布是否创建 tag `vX.Y.Z`？」
+   - **确认后**才在已合并的 `main` 上执行：
      ```bash
      git tag -a vX.Y.Z -m "vX.Y.Z"
-     git push origin main --follow-tags
+     git push origin vX.Y.Z
      ```
-   - 未确认则只推 commit，不打 tag。
+   - 未确认则不打 tag。
 5. tag 命名固定 `vX.Y.Z`，与 marketplace.json 的 plugin version 完全一致。
 
 ---
 
 ## 速查
 
+- 直接 push `main` / 自己合并 PR → 不合规（所有改动都得过 PR + reviewer 手动合并）。
 - 改了某个 skill 但没 bump 它的 `version` / 没写 CHANGELOG → 不合规。
 - 直接在 `main` 上改 skill（没开 worktree）→ 不合规。
 - 未经确认就 `git tag` → 不合规。

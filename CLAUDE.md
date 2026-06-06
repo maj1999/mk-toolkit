@@ -31,11 +31,12 @@ mk-toolkit/
 
 ## 维护规范（必须遵守）
 
-所有 skill 的开发/迭代/发布都遵循 **[MAINTAINING.md](./MAINTAINING.md)**，三条硬性规则：
+所有 skill 的开发/迭代/发布都遵循 **[MAINTAINING.md](./MAINTAINING.md)**，四条硬性规则：
 
 1. **worktree 隔离**：任何 skill 改动都在独立 git worktree + 分支里做，绝不直接改 `main`。
-2. **版本维护**：每次改 skill 都要 bump 它 `SKILL.md` frontmatter 的 `version`（SemVer），并在该 skill 的 `CHANGELOG.md` 加记录。
-3. **发布前确认 tag**：项目发布时先问维护者「是否打 tag」，确认后才创建项目级 tag `vX.Y.Z`。
+2. **PR 评审合并**：**所有**改动（含文档/配置）都走 新建分支 → 推送 → 提 PR，由 reviewer 手动评审合并；禁止直接 push `main`、禁止自己合自己的 PR。
+3. **版本维护**：每次改 skill 都要 bump 它 `SKILL.md` frontmatter 的 `version`（SemVer），并在该 skill 的 `CHANGELOG.md` 加记录。
+4. **发布前确认 tag**：项目发布时先问维护者「是否打 tag」，确认后才创建项目级 tag `vX.Y.Z`。
 
 两级版本：**单个 skill** 版本独立演进（frontmatter `version` + 各自 CHANGELOG）；**整个项目** 版本在发布时聚合（`marketplace.json` 的 `plugins[0].version` + 根 `CHANGELOG.md` + git tag）。tag 只打项目级，不给单个 skill 打。
 
