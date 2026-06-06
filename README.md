@@ -6,7 +6,7 @@
 
 ## Skills
 
-当前打包为 `doc-driven-dev` 插件，强制执行结构化的研发流程：先写文档，再写代码。
+所有 skill 打包为 `mk-toolkit` 插件（一个会持续扩充的个人 skill 集合，不限于研发领域）。当前收录的两个 skill 强制执行结构化的研发流程：先写文档，再写代码。
 
 ### `/dev-workflow`
 
@@ -30,14 +30,14 @@
 ```bash
 # 添加 marketplace 并安装插件
 /plugin marketplace add maj1999/mk-skills
-/plugin install doc-driven-dev@mk-skills
+/plugin install mk-toolkit@mk-skills
 ```
 
 开发期间可从本地路径添加：
 
 ```bash
 /plugin marketplace add /path/to/mk-skills
-/plugin install doc-driven-dev@mk-skills
+/plugin install mk-toolkit@mk-skills
 ```
 
 ### Codex CLI

@@ -6,8 +6,8 @@
   },
   "plugins": [
     {
-      "name": "doc-driven-dev",
-      "description": "文档驱动开发流程：强制先写文档再写代码。包含 dev-workflow（研发全生命周期编排）与 tech-doc-system（技术文档结构与写作规范）两个 skill。",
+      "name": "mk-toolkit",
+      "description": "个人 skill 工具箱，覆盖任意领域。当前包含 dev-workflow（研发全生命周期编排）与 tech-doc-system（技术文档结构与写作规范）两个文档驱动开发 skill。",
       "version": "1.0.0",
       "source": "./",
       "skills": [
