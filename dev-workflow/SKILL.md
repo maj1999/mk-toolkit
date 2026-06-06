@@ -1,6 +1,7 @@
 ---
 name: dev-workflow
 description: Use when starting a new feature, new requirement, or resuming development — orchestrates the full development lifecycle from User Story to release
+version: 1.0.0
 ---
 
 # 研发流程编排器

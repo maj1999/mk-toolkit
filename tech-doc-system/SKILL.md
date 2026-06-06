@@ -1,6 +1,7 @@
 ---
 name: tech-doc-system
 description: Use when writing documentation, reviewing document structure, maintaining doc indexes, or starting a new feature that requires documentation
+version: 1.0.0
 ---
 
 # 技术文档体系

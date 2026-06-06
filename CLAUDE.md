@@ -29,11 +29,23 @@ mk-toolkit/
 
 所有 skill 都打包进**单个** `mk-toolkit` 插件，由 `marketplace.json` 的 `plugins[0].skills` 数组（相对路径列表）声明。skill 目录是扁平放在仓库根下的，不在 `skills/` 子目录里 —— 这是有意的，marketplace.json 的 `skills` 字段支持任意相对路径，所以不需要那层包装。
 
+## 维护规范（必须遵守）
+
+所有 skill 的开发/迭代/发布都遵循 **[MAINTAINING.md](./MAINTAINING.md)**，三条硬性规则：
+
+1. **worktree 隔离**：任何 skill 改动都在独立 git worktree + 分支里做，绝不直接改 `main`。
+2. **版本维护**：每次改 skill 都要 bump 它 `SKILL.md` frontmatter 的 `version`（SemVer），并在该 skill 的 `CHANGELOG.md` 加记录。
+3. **发布前确认 tag**：项目发布时先问维护者「是否打 tag」，确认后才创建项目级 tag `vX.Y.Z`。
+
+两级版本：**单个 skill** 版本独立演进（frontmatter `version` + 各自 CHANGELOG）；**整个项目** 版本在发布时聚合（`marketplace.json` 的 `plugins[0].version` + 根 `CHANGELOG.md` + git tag）。tag 只打项目级，不给单个 skill 打。
+
 ## 新增一个 skill
 
-1. 在仓库根新建 `<skill-name>/SKILL.md`，frontmatter 含 `name`（与目录同名）和 `description`（决定何时被触发，写清楚「use when…」）。
+走 MAINTAINING.md 的「流程 A」（worktree 隔离），并完成这三步登记：
+
+1. 在仓库根新建 `<skill-name>/SKILL.md`，frontmatter 含 `name`（与目录同名）、`description`（决定何时被触发，写清楚「use when…」）、`version: 1.0.0`。
 2. 在 `.claude-plugin/marketplace.json` 的 `plugins[0].skills` 数组里加一行 `"./<skill-name>"`。
-3. 在 `README.md` 按领域分节登记（如 `### 研发流程`、`### 写作`）。
+3. 建 `<skill-name>/CHANGELOG.md`，并在 `README.md` 按领域分节登记（如 `### 研发流程`、`### 写作`）。
 
 第 1、2 步缺一不可：只建目录不登记，Claude Code 不会发现它。
 
